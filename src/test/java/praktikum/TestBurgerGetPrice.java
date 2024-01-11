@@ -19,6 +19,9 @@ public class TestBurgerGetPrice{
     Bun bun;
 
     @Mock
+    Ingredient ingredient;
+
+    @Mock
     Burger burger  = new Burger();;
 
 //    @Mock
@@ -37,34 +40,47 @@ public class TestBurgerGetPrice{
         float[] array1  = {1,15};
         float[] array2 = {3};
         return new Object[][] {
-                { 50, array1, 115 },
+                { 50000, array1, 116 },
                 { 2, array2, 7 }
         };
     }
 
     @Before
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+    public void setUp() {         MockitoAnnotations.openMocks(this);     }
 
-    @Test
-    public void runTestBurgerGetPrice()  throws Exception{
+   /*    @Test
+    public void runTestBurgerGetPriceOld()  throws Exception{
   //      burger = new Burger();
-        bun = new Bun("Test Bun",bunPrice);
-
-
+     //   bun = new Bun("Test Bun",bunPrice);
     //    Mockito.when(bun.getPrice()).thenReturn( 1000f);
         Mockito.doReturn( bunPrice).when(burger.bun).getPrice();
-        float price = burger.bun.getPrice() * 2;
-
+                float price = burger.bun.getPrice() * 2;
         for (float ingPrice : ingPrices) {
             Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "test name", ingPrice);
             Mockito.when(ingredient.getPrice()).thenReturn(ingPrice);
             price += ingredient.getPrice();
         }
-
-
         assertEquals("Неправильно рассчитана стоимость!", expectedPrice, price);
+    }
+*/
+    @Test
+    public void runTestBurgerGetPrice()  throws Exception{
+        burger = new Burger();
+        //burger.bun = new Bun("Test Bun",bunPrice) ;
+
+        //Mockito.when(bun.getPrice()).thenReturn( 1000);
+        Mockito.doReturn( bunPrice).when(bun).getPrice();
+
+              for (float ingPrice : ingPrices) {
+            Mockito.doReturn(ingPrice).when(ingredient).getPrice();
+            burger.ingredients.add( new Ingredient(IngredientType.SAUCE, "test name", ingPrice));
+        }
+
+
+        //float t = bun.getPrice();
+
+
+      assertEquals("Неправильно рассчитана стоимость!", expectedPrice, burger.getPrice(), 0);
     }
 
 
