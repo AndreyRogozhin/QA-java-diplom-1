@@ -24,8 +24,6 @@ public class TestBurgerGetPrice{
     @Mock
     Burger burger  = new Burger();;
 
-//    @Mock
-//    private Ingredient ingredient;
 
     @Parameterized.Parameter
     public float bunPrice;
@@ -37,52 +35,39 @@ public class TestBurgerGetPrice{
 
     @Parameterized.Parameters(name = "При стоимости булочки {0} и стоимости ингредиентов  стоимость всего бургера должна быть {2}")
     public static Object[][] data() {
-        float[] array1  = {1,15};
+        float[] array1  = {15,15};
         float[] array2 = {3};
+        float[] array3 = {};
         return new Object[][] {
-                { 50000, array1, 116 },
-                { 2, array2, 7 }
+                { 50, array1, 130 },
+                { 2, array2, 7 },
+                { 2, array3, 4 },
         };
     }
 
     @Before
     public void setUp() {         MockitoAnnotations.openMocks(this);     }
 
-   /*    @Test
-    public void runTestBurgerGetPriceOld()  throws Exception{
-  //      burger = new Burger();
-     //   bun = new Bun("Test Bun",bunPrice);
-    //    Mockito.when(bun.getPrice()).thenReturn( 1000f);
-        Mockito.doReturn( bunPrice).when(burger.bun).getPrice();
-                float price = burger.bun.getPrice() * 2;
-        for (float ingPrice : ingPrices) {
-            Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "test name", ingPrice);
-            Mockito.when(ingredient.getPrice()).thenReturn(ingPrice);
-            price += ingredient.getPrice();
-        }
-        assertEquals("Неправильно рассчитана стоимость!", expectedPrice, price);
-    }
-*/
+
     @Test
     public void runTestBurgerGetPrice()  throws Exception{
-        burger = new Burger();
-        //burger.bun = new Bun("Test Bun",bunPrice) ;
 
-        //Mockito.when(bun.getPrice()).thenReturn( 1000);
-        Mockito.doReturn( bunPrice).when(bun).getPrice();
+            float ingMockPrice = 100;
 
-              for (float ingPrice : ingPrices) {
-            Mockito.doReturn(ingPrice).when(ingredient).getPrice();
-            burger.ingredients.add( new Ingredient(IngredientType.SAUCE, "test name", ingPrice));
+            burger = new Burger();
+            burger.setBuns(bun);
+
+            Mockito.when(bun.getPrice()).thenReturn( bunPrice);
+
+            for (float ingPrice : ingPrices) {
+                Mockito.when(ingredient.getPrice()).thenReturn( ingPrice);
+                burger.addIngredient(ingredient);
         }
 
+            float mockResultPrice = burger.getPrice();
 
-        //float t = bun.getPrice();
-
-
-      assertEquals("Неправильно рассчитана стоимость!", expectedPrice, burger.getPrice(), 0);
-    }
-
+            assertEquals("Неправильно рассчитана стоимость!", expectedPrice, mockResultPrice, 0);
+        }
 
 
 }
