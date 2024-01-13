@@ -2,9 +2,6 @@ package praktikum;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +11,7 @@ public class TestBurgerIngredients {
 
     @Before
     public void init() {
-    //    MockitoAnnotations.initMocks(this);
+        //    MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -25,7 +22,7 @@ public class TestBurgerIngredients {
         //Ingredient ingredientSpy = Mockito.spy(ingredient);
         //burgerSpy.addIngredient(ingredientSpy);
         burger.addIngredient(ingredient);
-        assertEquals("Неверно записан объект!", ingredient,  burger.ingredients.get(0));
+        assertEquals("Неверно записан объект!", ingredient, burger.ingredients.get(0));
 
 //        Mockito.verify(burgerSpy.ingredients, Mockito.times(1)).add(ingredient);
     }
@@ -38,10 +35,8 @@ public class TestBurgerIngredients {
         burger.ingredients.add(ingredient);
 
         burger.removeIngredient(0);
-        assertEquals("Неверно удален объект!", 0,  burger.ingredients.size());
+        assertEquals("Неверно удален объект!", 0, burger.ingredients.size());
     }
-
-
 
 
     @Test
@@ -55,15 +50,12 @@ public class TestBurgerIngredients {
         burger.ingredients.add(ingredient1);
         burger.ingredients.add(ingredient2);
 
-        burger.moveIngredient(0,1);
+        burger.moveIngredient(0, 1);
 
-        assertEquals("Неверно перемещён объект!", ingredient0,  burger.ingredients.get(1));
-
-
+        assertEquals("Неверно перемещён объект!", ingredient0, burger.ingredients.get(1));
 
 
     }
-
 
 
 }

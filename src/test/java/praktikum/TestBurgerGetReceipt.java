@@ -23,7 +23,9 @@ public class TestBurgerGetReceipt {
     Burger burger;
 
     @Before
-    public void setUp() {        MockitoAnnotations.openMocks(this);    }
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     public void runTestBurgerGetReceipt() {
@@ -35,16 +37,16 @@ public class TestBurgerGetReceipt {
         float burgerMockPrice = 500;
         String expectedReceipt =
                 "(==== Бутерброд ====)\r\n" +
-                "= sauce dinosaur =\r\n" +
-                "(==== Бутерброд ====)\r\n" +
-                "\r\n" +
-                "Price: 500,000000\r\n";
+                        "= sauce dinosaur =\r\n" +
+                        "(==== Бутерброд ====)\r\n" +
+                        "\r\n" +
+                        "Price: 500,000000\r\n";
 
         burger.setBuns(bun);
         burger.addIngredient(ingredient);
 
 
-        Mockito.when(bun.getName()).thenReturn( bunMockName);
+        Mockito.when(bun.getName()).thenReturn(bunMockName);
         Mockito.when(ingredient.getType()).thenReturn(ingMockType);
         Mockito.when(ingredient.getName()).thenReturn(ingMockName);
         Mockito.when(burger.getPrice()).thenReturn(burgerMockPrice);
