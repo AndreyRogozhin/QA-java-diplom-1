@@ -47,8 +47,6 @@ public class TestBurgerGetPrice {
     @Test
     public void runTestBurgerGetPrice() throws Exception {
 
-        float ingMockPrice = 100;
-
         burger = new Burger();
         burger.setBuns(bun);
 

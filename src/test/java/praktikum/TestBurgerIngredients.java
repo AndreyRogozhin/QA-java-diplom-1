@@ -11,20 +11,15 @@ public class TestBurgerIngredients {
 
     @Before
     public void init() {
-        //    MockitoAnnotations.initMocks(this);
     }
 
     @Test
     public void runTestBurgerAddIngredient() throws Exception {
         Burger burger = new Burger();
-        //Burger burgerSpy = Mockito.spy(burger);
         Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "hot sauce", 100);
-        //Ingredient ingredientSpy = Mockito.spy(ingredient);
-        //burgerSpy.addIngredient(ingredientSpy);
         burger.addIngredient(ingredient);
         assertEquals("Неверно записан объект!", ingredient, burger.ingredients.get(0));
 
-//        Mockito.verify(burgerSpy.ingredients, Mockito.times(1)).add(ingredient);
     }
 
 

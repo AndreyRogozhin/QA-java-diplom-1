@@ -19,9 +19,6 @@ public class TestBurgerGetReceipt {
     @Mock
     Ingredient ingredient;
 
-    @Mock
-    Burger burger;
-
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
